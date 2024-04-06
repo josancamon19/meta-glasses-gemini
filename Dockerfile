@@ -2,8 +2,6 @@ FROM tiangolo/uvicorn-gunicorn-fastapi:python3.9
 
 RUN apt-get -y update
 RUN apt-get -y upgrade
-RUN apt-get install wkhtmltopdf --yes
-RUN apt-get install -y ffmpeg
 
 COPY . /app
 RUN pip install -r requirements.txt

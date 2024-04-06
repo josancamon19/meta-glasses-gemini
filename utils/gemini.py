@@ -140,11 +140,11 @@ def determine_calendar_event_inputs(message: str):
     assert fc.name == 'determine_calendar_event_inputs'
     return {
         'title': fc.args['title'],
-        'description': fc.args['description'],
+        'description': fc.args.get('description', ''),
         'date': fc.args['date'],
         'time': fc.args['time'],
         'duration': fc.args.get('duration', 1),
-        'type': fc.args['type']
+        'type': fc.args.get('type', 'event')
     }
 
 

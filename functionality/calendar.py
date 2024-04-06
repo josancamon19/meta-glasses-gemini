@@ -56,10 +56,11 @@ def create_google_calendar_event(title, description, date, time, duration=1, col
     event = service.events().insert(calendarId='primary', body=event).execute()
     print(f'Event created: {event.get("htmlLink")}')
 
+
 # create_google_calendar_event(
 #     title="Project Review",
 #     description="Discuss progress and next steps for Q2 launch",
-#     date="2024-03-29",
+#     date="2024-04-07",
 #     time="14:00",
 #     duration=1
 # )
