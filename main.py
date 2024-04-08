@@ -69,6 +69,7 @@ def logic(message: dict):
     elif operation_type == 'notion':
         arguments = determine_notion_page_inputs(text)
         add_new_page(**arguments)
+        send_whatsapp_threaded('Notion page created successfully!')
         return ok
     elif operation_type == 'search':
         response = google_search_pipeline(text)
