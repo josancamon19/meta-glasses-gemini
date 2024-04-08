@@ -5,7 +5,7 @@ on:
     branches: [ "master" ]
 
 env:
-  SERVICE: 'api'
+  SERVICE: api
   REGION: us-central1
 
 jobs:
