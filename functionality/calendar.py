@@ -1,3 +1,4 @@
+import base64
 import os
 from datetime import datetime, timedelta
 from googleapiclient.discovery import build
@@ -14,6 +15,19 @@ from google.oauth2.credentials import Credentials
 # 4 red
 # 5 yellow
 
+# {
+#   "installed": {
+#     "client_id": "740507740098-e2nqpm160vrnuskd27i90bi9t8tp987i.apps.googleusercontent.com",
+#     "project_id": "meta-rayban-glasses",
+#     "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+#     "token_uri": "https://oauth2.googleapis.com/token",
+#     "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+#     "client_secret": "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",
+#     "redirect_uris": [
+#       "http://localhost"
+#     ]
+#   }
+# }
 def create_google_calendar_event(title, description, date, time, duration=1, color_id=0 | 9):
     # TODO: handle reminders using google-reminders-cli
     # https://github.com/jonahar/google-reminders-cli/tree/master
@@ -25,6 +39,11 @@ def create_google_calendar_event(title, description, date, time, duration=1, col
         if creds and creds.expired and creds.refresh_token:
             creds.refresh(Request())
         else:
+            credentials_data_base64 = os.getenv('OAUTH_CREDENTIALS_ENCODED')  # base64 encoded credentials.json
+            credentials_data = base64.b64decode(credentials_data_base64).decode('utf-8')
+            with open('credentials.json', 'w') as credentials:
+                credentials.write(credentials_data)
+
             flow = InstalledAppFlow.from_client_secrets_file(
                 'credentials.json', SCOPES)
             creds = flow.run_local_server(port=0)
@@ -57,13 +76,13 @@ def create_google_calendar_event(title, description, date, time, duration=1, col
     print(f'Event created: {event.get("htmlLink")}')
 
 
-# create_google_calendar_event(
-#     title="Project Review",
-#     description="Discuss progress and next steps for Q2 launch",
-#     date="2024-04-07",
-#     time="14:00",
-#     duration=1
-# )
+create_google_calendar_event(
+    title="Project Review",
+    description="Discuss progress and next steps for Q2 launch",
+    date="2024-04-10",
+    time="14:00",
+    duration=1
+)
 
 # TODO: be able to retrieve events
 #   - Your next event
