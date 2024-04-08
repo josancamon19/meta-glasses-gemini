@@ -21,6 +21,11 @@ app.add_middleware(
 )
 
 
+@app.get('/')
+def home():
+    return 'Hello, World!'
+
+
 @app.get('/webhook', response_class=PlainTextResponse)
 def webhook_verification(request: Request):
     if request.query_params.get('hub.mode') == 'subscribe' and request.query_params.get(
