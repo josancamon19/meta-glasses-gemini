@@ -2,7 +2,8 @@ import os
 
 from google.cloud import storage
 
-storage_client = storage.Client.from_service_account_json('google-credentials.json')
+storage_client = storage.Client.from_service_account_json(
+    os.getenv('GOOGLE_APPLICATION_CREDENTIALS', 'google-credentials.json'))
 bucket_name = os.getenv('CLOUD_STORAGE_BUCKET_NAME')
 
 
