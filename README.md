@@ -20,6 +20,11 @@ through setting up the project environment, including necessary configurations a
     ```sh
     pip install -r requirements.txt
     ```
+4. Run the project:
+
+    ```sh
+    uvicorn main:app --reload
+    ```
 
 ### Environment Variables
 
@@ -38,6 +43,7 @@ NOTION_INTEGRATION_SECRET=
 NOTION_DATABASE_ID=
 SERPER_DEV_API_KEY=
 CRAWLBASE_API_KEY=
+OAUTH_CREDENTIALS_ENCODED=
 ```
 
 - `WHATSAPP_AUTH_TOKEN`: Create an app at [Meta for Developers](https://developers.facebook.com/) and retrieve the
@@ -53,6 +59,7 @@ CRAWLBASE_API_KEY=
   Category, Content, Created At, Completed). Share the database with the integration.
 - `SERPER_DEV_API_KEY`, `CRAWLBASE_API_KEY`: Obtain these API keys from the respective websites to enable advanced
   search and data retrieval functionalities.
+- OAUTH_CREDENTIALS_ENCODED: Base64 encode your Google OAuth credentials and set them here.
 
 ### Additional Configuration
 
@@ -60,3 +67,5 @@ CRAWLBASE_API_KEY=
   contain credentials for your GCP project.
 - **Google OAuth Token**: Ensure you have a `credentials.json` file for OAuth to enable Google Calendar integrations.
   Follow the Google Calendar API documentation to obtain this token.
+- **Create a Meta App**: Create an app at [Meta for Developers](https://developers.facebook.com/) to obtain the WhatsApp
+  API credentials, and setup the webhook to your URL.
